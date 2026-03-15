@@ -45,9 +45,11 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Эндпоинт не найден' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Survey API запущен на порту ${PORT}`);
-  console.log(`📚 Документация доступна: http://localhost:${PORT}/api-docs`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Survey API запущен на порту ${PORT}`);
+    console.log(`📚 Документация доступна: http://localhost:${PORT}/api-docs`);
+  });
+}
 
 module.exports = app;
